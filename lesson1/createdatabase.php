@@ -11,4 +11,16 @@ echo 'Успешно соединились ' . mysqli_get_host_info($link) . "\
 
 //создаем базу данных
 
-mysqli_query($link, '', MYSQLI_STORE_RESULT);
+mysqli_query(   $link, '
+                CREATE SCHEMA `shop` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci ;',
+               MYSQLI_STORE_RESULT);
+
+//создаем столбцы БД
+mysqli_query(   $link, 'CREATE TABLE `shop`.`category` (  `id` INT NOT NULL,
+ `name` VARCHAR(128) NOT NULL,
+`discount` TINYINT NOT NULL,
+PRIMARY KEY (`id`));
+',
+    MYSQLI_STORE_RESULT);
+
+
